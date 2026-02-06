@@ -1,0 +1,85 @@
+{{- $isDarwin := eq .chezmoi.os "darwin" -}}
+{{- $isLinux := eq .chezmoi.os "linux" -}}
+{{- $isDevcontainer := or (env "REMOTE_CONTAINERS") (env "CODESPACES") -}}
+{{- $brewPrefix := "" -}}
+{{- if $isDarwin -}}
+{{-   $brewPrefix = "/opt/homebrew" -}}
+{{- else if $isLinux -}}
+{{-   $brewPrefix = "/home/linuxbrew/.linuxbrew" -}}
+{{- end -}}
+bindkey -e
+
+# Docker CLI completions
+if [ -d "$HOME/.docker/completions" ]; then
+  fpath=($HOME/.docker/completions $fpath)
+fi
+
+# Zsh completion system
+autoload -Uz compinit && compinit
+
+# Tool integrations
+command -v fzf &>/dev/null && source <(fzf --zsh)
+{{ if $isDarwin -}}
+command -v op &>/dev/null && eval "$(op completion zsh)" && compdef _op op
+{{ end -}}
+
+# Use different tmux sockets for different terminals
+case "$TERM_PROGRAM" in
+{{ if $isDarwin }}  ghostty)
+    export TMUX_TMPDIR="${TMPDIR:-/tmp}/tmux-ghostty"
+    mkdir -p "$TMUX_TMPDIR"
+    ;;
+  zed)
+    export TMUX_TMPDIR="${TMPDIR:-/tmp}/tmux-zed"
+    mkdir -p "$TMUX_TMPDIR"
+    ;;
+{{ end }}  vscode)
+    export TMUX_TMPDIR="${TMPDIR:-/tmp}/tmux-vscode"
+    mkdir -p "$TMUX_TMPDIR"
+    ;;
+esac
+
+# zsh plugins
+{{ if ne $brewPrefix "" -}}
+if [ -f "{{ $brewPrefix }}/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
+  source "{{ $brewPrefix }}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+elif [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+  source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+
+if [ -f "{{ $brewPrefix }}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
+  source "{{ $brewPrefix }}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+elif [ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+  source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+{{ else -}}
+[ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+[ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+{{ end -}}
+
+alias bx='bundle exec'
+alias g='git'
+alias ga='git add'
+alias gc='git commit'
+alias gco='git checkout'
+alias gp='git push'
+alias gs='git status'
+alias nv='nvim'
+alias reload='source ~/.zshrc'
+alias mkpasswd='docker run --rm -ti alpine:latest mkpasswd -m sha512'
+{{ if $isDarwin -}}
+alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+{{ end -}}
+
+eval "$(mise activate zsh)"
+eval "$(starship init zsh)"
+
+# Google Cloud SDK
+if [ -f '{{ .chezmoi.homeDir }}/google-cloud-sdk/completion.zsh.inc' ]; then . '{{ .chezmoi.homeDir }}/google-cloud-sdk/completion.zsh.inc'; fi
+
+# kubeswitch
+if command -v switcher &>/dev/null; then
+  source <(switcher init zsh)
+  alias ks=switch
+  source <(switch completion zsh)
+fi

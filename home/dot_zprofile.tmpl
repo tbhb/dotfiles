@@ -1,0 +1,71 @@
+{{- $isDarwin := eq .chezmoi.os "darwin" -}}
+{{- $isLinux := eq .chezmoi.os "linux" -}}
+{{- $isDevcontainer := or (env "REMOTE_CONTAINERS") (env "CODESPACES") -}}
+{{- $brewPrefix := "" -}}
+{{- if $isDarwin -}}
+{{-   $brewPrefix = "/opt/homebrew" -}}
+{{- else if $isLinux -}}
+{{-   $brewPrefix = "/home/linuxbrew/.linuxbrew" -}}
+{{- end -}}
+
+{{ if $isDarwin -}}
+eval "$(/opt/homebrew/bin/brew shellenv)"
+{{ else if $isLinux -}}
+if [ -d /home/linuxbrew/.linuxbrew ]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+{{ end -}}
+
+# Colored man pages
+export LESS_TERMCAP_mb=$'\e[1;31m'
+export LESS_TERMCAP_md=$'\e[1;36m'
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_se=$'\e[0m'
+export LESS_TERMCAP_so=$'\e[1;44;33m'
+export LESS_TERMCAP_ue=$'\e[0m'
+export LESS_TERMCAP_us=$'\e[1;32m'
+
+{{ if $isDarwin -}}
+export SSH_AUTH_SOCK="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+{{ else if and $isLinux (not $isDevcontainer) -}}
+export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
+{{ end -}}
+{{ if not $isDevcontainer -}}
+export OP_ACCOUNT="{{ keyring "chezmoi" "op-account" }}"
+{{ end -}}
+
+export AWS_REGION=us-east-1
+
+export RUBY_YJIT_ENABLE=1
+
+{{ if $isDarwin -}}
+export PATH="{{ $brewPrefix }}/opt/coreutils/libexec/gnubin:$PATH"
+export PATH="{{ $brewPrefix }}/opt/curl/bin:$PATH"
+export PATH="{{ $brewPrefix }}/opt/gnu-sed/libexec/gnubin:$PATH"
+export PATH="{{ $brewPrefix }}/opt/gnu-tar/libexec/gnubin:$PATH"
+export PATH="{{ $brewPrefix }}/opt/openssl@3/bin:$PATH"
+{{ end -}}
+export PATH="$HOME/.docker/bin:$PATH"
+export PATH="$HOME/.dotnet/tools:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/go/bin:$PATH"
+
+
+if [ -f "$HOME/.cargo/env" ]; then
+  . "$HOME/.cargo/env"
+fi
+
+# pnpm
+{{ if $isDarwin -}}
+export PNPM_HOME="{{ .chezmoi.homeDir }}/Library/pnpm"
+{{ else -}}
+export PNPM_HOME="{{ .chezmoi.homeDir }}/.local/share/pnpm"
+{{ end -}}
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# Google Cloud SDK
+if [ -f '{{ .chezmoi.homeDir }}/google-cloud-sdk/path.zsh.inc' ]; then . '{{ .chezmoi.homeDir }}/google-cloud-sdk/path.zsh.inc'; fi
