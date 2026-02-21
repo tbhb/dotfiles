@@ -1,0 +1,55 @@
+{{- $isDarwin := eq .chezmoi.os "darwin" -}}
+{{- $isLinux := eq .chezmoi.os "linux" -}}
+{{- $isDevcontainer := or (env "REMOTE_CONTAINERS") (env "CODESPACES") -}}
+set -g default-terminal "tmux-256color"
+set -ag terminal-overrides ",$TERM:RGB"
+
+set-option -g prefix C-q
+bind-key C-q last-window
+bind-key q send-prefix
+
+setw -g aggressive-resize no
+
+# Pane border styling (Monokai Pro)
+set -g pane-border-style 'fg=#403e41'
+set -g pane-active-border-style 'fg=#a9dc76,bold'
+set -g pane-border-lines heavy
+
+set -g base-index 1
+setw -g pane-base-index 1
+unbind 0
+bind 0 kill-pane
+
+setw -g mode-keys vi
+bind ` copy-mode
+unbind [
+unbind p
+bind p paste-buffer
+bind-key -T copy-mode-vi v send-keys -X begin-selection
+bind-key -T copy-mode-vi Escape send-keys -X cancel
+
+unbind %
+unbind c
+bind c new-window -c "#{pane_current_path}"
+bind - split-window -v -c "#{pane_current_path}"
+bind | split-window -h -c "#{pane_current_path}"
+
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'tmux-plugins/tmux-yank'
+set -g status-style 'bg=default'
+
+set -g @plugin 'erikw/tmux-powerline'
+
+if-shell '[ -f {{ .chezmoi.homeDir }}/.tmux/plugins/tpm/tpm ]' \
+  'run "{{ .chezmoi.homeDir }}/.tmux/plugins/tpm/tpm"'
+
+# Add an empty line above the status bar for padding
+set -g status 2
+set -gF status-format[1] '#{status-format[0]}'
+set -g status-format[0] ''

@@ -1,0 +1,9 @@
+{{- $isDevcontainer := or (env "REMOTE_CONTAINERS") (env "CODESPACES") -}}
+{{- if not $isDevcontainer -}}
+#!/bin/bash
+if command -v tmux >/dev/null 2>&1 && command -v git >/dev/null 2>&1; then
+  if [ ! -d "{{ .chezmoi.homeDir }}/.tmux/plugins/tpm" ]; then
+    git clone https://github.com/tmux-plugins/tpm "{{ .chezmoi.homeDir }}/.tmux/plugins/tpm"
+  fi
+fi
+{{- end }}

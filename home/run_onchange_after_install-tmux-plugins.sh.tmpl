@@ -1,0 +1,8 @@
+{{- $isDevcontainer := or (env "REMOTE_CONTAINERS") (env "CODESPACES") -}}
+{{- if not $isDevcontainer -}}
+#!/bin/bash
+# tmux.conf hash: {{ include "dot_tmux.conf.tmpl" | sha256sum }}
+if [ -x "{{ .chezmoi.homeDir }}/.tmux/plugins/tpm/bin/install_plugins" ]; then
+  "{{ .chezmoi.homeDir }}/.tmux/plugins/tpm/bin/install_plugins"
+fi
+{{- end }}
