@@ -1,0 +1,622 @@
+{
+	// Workbench
+	"breadcrumbs.enabled": false,
+	"problems.decorations.enabled": true,
+	"security.workspace.trust.untrustedFiles": "open",
+	"update.mode": "start",
+	"window.autoDetectColorScheme": false,
+	"window.autoDetectHighContrast": false,
+	"window.commandCenter": false,
+	"window.confirmSaveUntitledWorkspace": false,
+	"window.newWindowDimensions": "maximized",
+	"window.restoreWindows": "all",
+	"workbench.colorTheme": "Monokai Pro",
+	"workbench.colorCustomizations": {
+		"editorOverviewRuler.addedForeground": "#0000",
+		"editorOverviewRuler.modifiedForeground": "#0000",
+		"editorOverviewRuler.deletedForeground": "#0000",
+		"editorOverviewRuler.infoForeground": "#0000",
+		"editorOverviewRuler.warningForeground": "#0000",
+		"editorOverviewRuler.errorForeground": "#0000",
+		"editorOverviewRuler.bracketMatchForeground": "#0000",
+		"editorOverviewRuler.commentForeground": "#0000",
+		"editorOverviewRuler.commentUnresolvedForeground": "#0000",
+		"editorOverviewRuler.currentContentForeground": "#0000",
+		"editorOverviewRuler.commonContentForeground": "#0000",
+		"editorOverviewRuler.incomingContentForeground": "#0000",
+		"editorOverviewRuler.findMatchForeground": "#0000",
+		"editorOverviewRuler.rangeHighlightForeground": "#0000",
+		"editorOverviewRuler.selectionHighlightForeground": "#0000",
+		"editorOverviewRuler.wordHighlightForeground": "#0000",
+		"editorOverviewRuler.wordHighlightStrongForeground": "#0000",
+		"editorOverviewRuler.wordHighlightTextForeground": "#0000"
+	},
+	"workbench.editorAssociations": {
+		"*.copilotmd": "vscode.markdown.preview.editor",
+		"{hexdiff}:/**/*.*": "hexEditor.hexedit",
+		"file:/**/*.csv": "jupyter-data-wrangler",
+		"file:/**/*.parquet": "jupyter-data-wrangler"
+	},
+	"workbench.iconTheme": "Monokai Pro Icons",
+	"workbench.layoutControl.enabled": false,
+	"workbench.startupEditor": "none",
+	"workbench.statusBar.visible": true,
+	"workbench.tips.enabled": false,
+	"zenMode.fullScreen": false,
+
+	// Editor
+	"editor.accessibilitySupport": "off",
+	"editor.cursorBlinking": "phase",
+	"editor.cursorSmoothCaretAnimation": "on",
+	"editor.hideCursorInOverviewRuler": true,
+	"editor.defaultFormatter": "EditorConfig.EditorConfig",
+	"editor.detectIndentation": false,
+	"editor.fontFamily": "\"JetBrainsMono Nerd Font\"",
+	"editor.fontLigatures": true,
+	"editor.fontSize": 16,
+	"editor.fontWeight": 400,
+	"editor.formatOnSave": true,
+	"editor.glyphMargin": false,
+	"editor.guides.bracketPairs": true,
+	"editor.guides.highlightActiveIndentation": "always",
+	"editor.guides.indentation": true,
+	"editor.lightbulb.enabled": "off",
+	"editor.minimap.enabled": false,
+	"editor.overviewRulerBorder": false,
+	"editor.quickSuggestions": {
+		"strings": true
+	},
+	"editor.renderLineHighlight": "line",
+	"editor.renderWhitespace": "trailing",
+	"editor.scrollBeyondLastLine": false,
+	"editor.scrollbar.horizontal": "hidden",
+	"editor.scrollbar.vertical": "hidden",
+	"editor.semanticHighlighting.enabled": true,
+	"editor.suggestSelection": "first",
+	"editor.tabSize": 2,
+	"editor.tokenColorCustomizations": {
+		"[*Light*]": {
+			"textMateRules": [
+				{
+					"scope": "ref.matchtext",
+					"settings": {
+						"foreground": "#000"
+					}
+				}
+			]
+		},
+		"[*Dark*]": {
+			"textMateRules": [
+				{
+					"scope": "ref.matchtext",
+					"settings": {
+						"foreground": "#fff"
+					}
+				}
+			]
+		},
+		"textMateRules": []
+	},
+	"editor.unicodeHighlight.includeStrings": false,
+	"window.density.editorTabHeight": "compact",
+	"workbench.editor.enablePreview": false,
+	"workbench.editor.showTabs": "single",
+	"workbench.editor.showIcons": false,
+
+	// Languages
+	"[astro]": {
+		"editor.defaultFormatter": "astro-build.astro-vscode",
+		"editor.formatOnSave": true
+	},
+
+	"[caddyfile]": {
+		"editor.defaultFormatter": "matthewpi.caddyfile-support",
+		"editor.formatOnSave": true
+	},
+
+	"[cmake]": {
+		"editor.defaultFormatter": "twxs.cmake",
+		"editor.formatOnSave": true
+	},
+	"cmake.configureOnOpen": false,
+
+	"[css]": {
+		"editor.codeActionsOnSave": {
+			"source.fixAll.biome": "explicit",
+			"source.organizeImports.biome": "explicit"
+		},
+		"editor.defaultFormatter": "biomejs.biome",
+		"editor.formatOnSave": true
+	},
+	"css.validate": false,
+
+	"[dockerfile]": {
+		"editor.defaultFormatter": "foxundermoon.shell-format",
+		"editor.formatOnSave": true
+	},
+
+	"[dockercompose]": {
+		"editor.insertSpaces": true,
+		"editor.tabSize": 2,
+		"editor.autoIndent": "advanced",
+		"editor.defaultFormatter": "redhat.vscode-yaml",
+		"editor.formatOnSave": true
+	},
+
+	"[dotenv]": {
+		"editor.defaultFormatter": "dotenv.dotenv-vscode",
+		"editor.formatOnSave": true
+	},
+	"dotenv.enableAutocloaking": false,
+
+	"[github-actions-workflow]": {
+		"editor.defaultFormatter": "redhat.vscode-yaml",
+		"editor.formatOnSave": true
+	},
+
+	"[html]": {
+		"editor.codeActionsOnSave": {
+			"source.fixAll.biome": "explicit",
+			"source.organizeImports.biome": "explicit"
+		},
+		"editor.defaultFormatter": "biomejs.biome",
+		"editor.formatOnSave": true
+	},
+
+	"[go]": {
+		"editor.defaultFormatter": "golang.go",
+		"editor.formatOnSave": true
+	},
+	"go.toolsManagement.autoUpdate": true,
+	"gopls": {
+		"ui.semanticTokens": true
+	},
+
+	"[grit]": {
+		"editor.codeActionsOnSave": {
+			"source.fixAll.biome": "explicit",
+			"source.organizeImports.biome": "explicit"
+		},
+		"editor.defaultFormatter": "biomejs.biome",
+		"editor.formatOnSave": true
+	},
+
+	"[ignore]": {
+		"editor.defaultFormatter": "foxundermoon.shell-format",
+		"editor.formatOnSave": true
+	},
+
+	"[javascript]": {
+		"editor.codeActionsOnSave": {
+			"source.fixAll.biome": "explicit",
+			"source.organizeImports.biome": "explicit"
+		},
+		"editor.defaultFormatter": "biomejs.biome",
+		"editor.formatOnSave": true
+	},
+
+	"[javascriptreact]": {
+		"editor.codeActionsOnSave": {
+			"source.fixAll.biome": "explicit",
+			"source.organizeImports.biome": "explicit"
+		},
+		"editor.defaultFormatter": "biomejs.biome",
+		"editor.formatOnSave": true
+	},
+
+	"[jinja-html]": {
+		"editor.defaultFormatter": "monosans.djlint",
+		"editor.formatOnSave": true
+	},
+	"djlint.showInstallError": false,
+
+	"[json]": {
+		"editor.codeActionsOnSave": {
+			"source.fixAll.biome": "explicit",
+			"source.organizeImports.biome": "explicit"
+		},
+		"editor.defaultFormatter": "biomejs.biome",
+		"editor.formatOnSave": true
+	},
+	"json.schemaDownload.trustedDomains": {
+		"https://schemastore.azurewebsites.net/": true,
+		"https://raw.githubusercontent.com/": true,
+		"https://www.schemastore.org/": true,
+		"https://json.schemastore.org/": true,
+		"https://json-schema.org/": true,
+		"https://biomejs.dev": true
+	},
+	"json.schemas": [],
+
+	"[jsonc]": {
+		"editor.codeActionsOnSave": {
+			"source.fixAll.biome": "explicit",
+			"source.organizeImports.biome": "explicit"
+		},
+		"editor.defaultFormatter": "biomejs.biome",
+		"editor.formatOnSave": true
+	},
+
+	"[just]": {
+		"editor.defaultFormatter": "nefrob.vscode-just-syntax",
+		"editor.formatOnSave": true
+	},
+
+	"notebook.codeActionsOnSave": {
+		"notebook.source.fixAll": "explicit",
+		"notebook.source.organizeImports": "explicit"
+	},
+	"notebook.formatOnSave.enabled": true,
+
+	"[makefile]": {
+		"editor.defaultFormatter": "ms-vscode.makefile-tools",
+		"editor.insertSpaces": false,
+		"editor.tabSize": 4
+	},
+
+	"[markdown]": {
+		"editor.codeActionsOnSave": {
+			"source.fixAll.rumdl": "explicit"
+		},
+		"editor.formatOnSave": true,
+		"editor.defaultFormatter": "rvben.rumdl",
+		"editor.wordWrap": "wordWrapColumn",
+		"editor.wordWrapColumn": 100,
+		"editor.rulers": [100]
+	},
+	"markdown-preview-enhanced.codeBlockTheme": "github.css",
+	"markdown-preview-enhanced.previewTheme": "github-light.css",
+
+	"[powershell]": {
+		"editor.defaultFormatter": "ms-vscode.powershell"
+	},
+	"powershell.powerShellAdditionalExePaths": {
+		"PowerShell 7": "/opt/homebrew/bin/pwsh"
+	},
+
+	"[python]": {
+		"editor.codeActionsOnSave": {
+			"source.fixAll": "explicit",
+			"source.organizeImports": "explicit"
+		},
+		"editor.defaultFormatter": "charliermarsh.ruff",
+		"editor.formatOnSave": true,
+		"editor.formatOnType": false,
+		"editor.tabSize": 4,
+		"editor.insertSpaces": true
+	},
+	"python.analysis.exclude": [
+		"**/.git",
+		"**/.venv",
+		"**/.worktrees",
+		"**/__pycache__",
+		"**/tmp"
+	],
+	"python.analysis.ignore": ["**/vendor/**"],
+	"python.analysis.logLevel": "Trace",
+	"python.analysis.typeCheckingMode": "off",
+	"python.terminal.activateEnvironment": false,
+
+	"[ruby]": {
+		"editor.defaultFormatter": "Shopify.ruby-lsp",
+		"editor.formatOnSave": true
+	},
+	"rubyLsp.enabledFeatures": {
+		"codeActions": true,
+		"diagnostics": false,
+		"documentHighlights": true,
+		"documentLink": true,
+		"documentSymbols": true,
+		"foldingRanges": true,
+		"formatting": true,
+		"hover": true,
+		"inlayHint": true,
+		"onTypeFormatting": true,
+		"selectionRanges": true,
+		"semanticHighlighting": true,
+		"completion": true,
+		"codeLens": true,
+		"definition": true,
+		"workspaceSymbol": true,
+		"signatureHelp": true
+	},
+
+	"rust-analyzer.rustfmt.rangeFormatting.enable": true,
+	"[rust]": {
+		"editor.defaultFormatter": "rust-lang.rust-analyzer",
+		"editor.formatOnSave": true
+	},
+
+	"[shellscript]": {
+		"editor.codeActionsOnSave": {
+			"source.fixAll.shellcheck": "explicit"
+		},
+		"editor.defaultFormatter": "foxundermoon.shell-format",
+		"editor.formatOnSave": true
+	},
+
+	"[sql]": {
+		"editor.defaultFormatter": "sqlfluff.vscode-sqlfluff",
+		"editor.formatOnSave": true
+	},
+
+	"[toml]": {
+		"editor.defaultFormatter": "tamasfe.even-better-toml",
+		"editor.formatOnSave": true
+	},
+
+	"tailwindCSS.includeLanguages": {
+		"astro": "html"
+	},
+
+	"[typescript]": {
+		"editor.codeActionsOnSave": {
+			"source.fixAll.biome": "explicit",
+			"source.organizeImports.biome": "explicit"
+		},
+		"editor.defaultFormatter": "biomejs.biome",
+		"editor.formatOnSave": true
+	},
+	"[typescriptreact]": {
+		"editor.codeActionsOnSave": {
+			"source.fixAll.biome": "explicit",
+			"source.organizeImports.biome": "explicit"
+		},
+		"editor.defaultFormatter": "biomejs.biome",
+		"editor.formatOnSave": true
+	},
+	"typescript.inlayHints.parameterNames.enabled": "all",
+
+	"[xml]": {
+		"editor.defaultFormatter": "redhat.vscode-xml",
+		"editor.formatOnSave": true
+	},
+
+	"[yaml]": {
+		"editor.defaultFormatter": "redhat.vscode-yaml",
+		"editor.formatOnSave": true
+	},
+	"yaml.schemas": {
+		"https://squidfunk.github.io/mkdocs-material/schema.json": "mkdocs.yml"
+	},
+	"yaml.customTags": [
+		"!And sequence",
+		"!And",
+		"!Base64",
+		"!Cidr",
+		"!ENV scalar",
+		"!ENV sequence",
+		"!Equals sequence",
+		"!Equals",
+		"!FindInMap sequence",
+		"!FindInMap",
+		"!GetAZs",
+		"!GetAtt",
+		"!If sequence",
+		"!If",
+		"!ImportValue sequence",
+		"!ImportValue",
+		"!Join sequence",
+		"!Join",
+		"!Not sequence",
+		"!Not",
+		"!Or sequence",
+		"!Or",
+		"!Ref",
+		"!Select sequence",
+		"!Select",
+		"!Split sequence",
+		"!Split",
+		"!Sub sequence",
+		"!Sub",
+		"!relative scalar",
+		"tag:yaml.org,2002:python/name:material.extensions.emoji.to_svg",
+		"tag:yaml.org,2002:python/name:material.extensions.emoji.twemoji",
+		"tag:yaml.org,2002:python/name:zensical.extensions.emoji.to_svg",
+		"tag:yaml.org,2002:python/name:zensical.extensions.emoji.twemoji",
+		"tag:yaml.org,2002:python/name:pymdownx.superfences.fence_code_format",
+		"tag:yaml.org,2002:python/object/apply:pymdownx.slugs.slugify mapping"
+	],
+
+	// Vim
+	"vim.textwidth": 88,
+	"vim.easymotion": true,
+	"vim.incsearch": true,
+	"vim.useSystemClipboard": true,
+	"vim.hlsearch": true,
+	"vim.leader": ",",
+	"vim.insertModeKeyBindings": [
+		{
+			"before": ["j", "j"],
+			"after": ["<Esc>"]
+		}
+	],
+	"vim.normalModeKeyBindingsNonRecursive": [
+		{
+			"before": ["<leader>", "w"],
+			"commands": ["workbench.action.files.save"]
+		},
+		{
+			"before": ["<leader>", "<space>"],
+			"commands": [":nohl"]
+		},
+		{
+			"before": ["<leader>", "e"],
+			"commands": ["workbench.view.explorer"]
+		},
+		{
+			"before": ["<leader>", "t"],
+			"commands": ["workbench.action.toggleSidebarVisibility"]
+		},
+		{
+			"before": ["<leader>", "c"],
+			"commands": ["editor.action.commentLine"]
+		},
+		{
+			"before": ["<leader>", "f"],
+			"commands": ["revealInExplorer"]
+		},
+		{
+			"before": ["<leader>", "r", "e"],
+			"commands": ["editor.action.rename"]
+		},
+		{
+			"before": ["<leader>", "r", "f"],
+			"commands": ["fileutils.renameFile"]
+		},
+		{
+			"before": ["<leader>", "o", "g"],
+			"commands": ["workbench.action.showAllSymbols"]
+		},
+		{
+			"before": ["<leader>", "o", "o"],
+			"commands": ["workbench.action.showEditorsInActiveGroup"]
+		},
+		{
+			"before": ["<leader>", "o", "p"],
+			"commands": ["workbench.action.quickOpen"]
+		}
+	],
+	"vim.visualModeKeyBindings": [
+		{
+			"before": ["<leader>", "c"],
+			"commands": ["editor.action.commentLine", "extension.vim_escape"]
+		},
+		{
+			"before": ["=", "="],
+			"commands": ["editor.action.formatDocument"]
+		}
+	],
+
+	// Terminal
+	"terminal.external.osxExec": "Alacritty.app",
+	"terminal.integrated.hideOnStartup": "always",
+	"terminal.integrated.commandsToSkipShell": [
+		"workbench.action.toggleSidebarVisibility",
+		"workbench.action.quickOpen"
+	],
+	"terminal.integrated.fontFamily": "\"JetBrainsMono Nerd Font\"",
+	"terminal.integrated.fontSize": 14,
+	"terminal.integrated.rightClickBehavior": "nothing",
+	"terminal.integrated.sendKeybindingsToShell": true,
+
+	// Files/search
+	"explorer.autoReveal": false,
+	"explorer.compactFolders": false,
+	"explorer.confirmDelete": false,
+	"explorer.confirmDragAndDrop": false,
+	"explorer.confirmPasteNative": false,
+	"explorer.fileNesting.enabled": true,
+	"explorer.fileNesting.expand": false,
+	"files.associations": {
+		"*.rb.tt": "erb",
+		"*.erb.tt": "erb",
+		"*.gemfile": "ruby",
+		".env*": "dotenv",
+		"wrangler.json": "jsonc",
+		"llms.txt": "markdown",
+		"LICENSE": "plaintext",
+		"LICENSE-DOCS": "plaintext",
+		"llms-full.txt": "markdown",
+		"**/overrides/**/*.html": "jinja-html",
+		"dbt/**/*.sql": "",
+		"models_dbt/**/*.sql": "jinja-sql",
+		"models/**/*.sql": "jinja-sql",
+		"**/*.sql": "jinja-sql",
+		"*.css": "tailwindcss",
+		"*.hujson": "jsonc",
+		"*.pkr.hcl": "hcl",
+		"folio/theme/**/*.html": "jinja-html",
+		"*.include": "bikeshed",
+		"*.jsonlt": "jsonl",
+		"*.tmpl": "go-template"
+	},
+	"files.exclude": {
+		"**/.git": true,
+		"**/.svn": true,
+		"**/.hg": true,
+		"**/.DS_Store": true,
+		"**/Thumbs.db": true,
+		"**/.ruby-lsp": true,
+		"**/.mypy_cache": true,
+		"**/.pytest_cache": true,
+		"**/__pycache__": true,
+		"**/.ruff_cache": true,
+		"**/.venv*": true,
+		"**/.pdm-build": true,
+		"**/node_modules": true,
+		"**/hooks.log": true,
+		"**/.complexipy_cache": true,
+		"**/.hypothesis": true,
+		"**/.import_linter_cache": true,
+		"**/.worktrees": true
+	},
+	"files.hotExit": "onExitAndWindowClose",
+	"search.exclude": {
+		"**/node_modules": true,
+		"**/.git": true,
+		"**/dist/**": true,
+		"**/build/**": true,
+		"**/coverage/**": true,
+		"**/vendor/**": true,
+		"**/yarn.lock": true,
+		"**/package-lock.json": true,
+		"**/pdm.lock": true,
+		"**/pnpm-lock.yaml": true
+	},
+	"search.showLineNumbers": true,
+	"search.smartCase": true,
+
+	// SCM
+	"diffEditor.codeLens": true,
+	"git.autoRepositoryDetection": false,
+	"git.autofetch": true,
+	"git.autorefresh": false,
+	"git.confirmSync": false,
+	"git.decorations.enabled": false,
+	"git.replaceTagsWhenPull": true,
+	"githubPullRequests.pullBranch": "never",
+	"scm.diffDecorationsGutterVisibility": "hover",
+
+	// Extensions
+	"cSpell.customDictionaries": {
+		"default": {
+			"name": "default",
+			"path": "~/Application Support/Code/Dictionaries/default.txt",
+			"scope": "user",
+			"addWords": true
+		}
+	},
+	"cSpell.ignorePaths": [
+		"package-lock.json",
+		"pnpm-lock.yaml",
+		"node_modules",
+		"vscode-extension",
+		".git/{info,lfs,logs,refs,objects}/**",
+		".git/{index,*refs,*HEAD}",
+		".vscode",
+		".vscode-insiders",
+		"*.jsonl",
+		"uv.lock"
+	],
+	"emmet.includeLanguages": {
+		"postcss": "css"
+	},
+	"extensions.experimental.affinity": {
+		"vscodevim.vim": 1
+	},
+	"github.copilot.nextEditSuggestions.enabled": true,
+	"github.copilot.chat.codesearch.enabled": true,
+	"github.copilot.enable": {
+		"*": true,
+		"plaintext": false,
+		"markdown": true,
+		"scminput": false
+	},
+	"nxConsole.showNodeVersionOnStartup": false,
+	"redhat.telemetry.enabled": false,
+	"snyk.advanced.cliPath": "/Users/tony/Library/Application Support/snyk/vscode-cli/snyk-macos-arm64",
+	"snyk.securityAtInception.autoConfigureSnykMcpServer": true,
+	"snyk.securityAtInception.executionFrequency": "On Code Generation",
+	"snyk.trustedFolders": ["/Users/tony/Code/github.com/tbhb/LittleMatches"]
+}
