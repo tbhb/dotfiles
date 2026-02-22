@@ -39,6 +39,12 @@ The `.chezmoiroot` file sets `home/` as the source root. All managed dotfiles go
 | `home/private_Library/.../private_Code/User/settings.json` | `~/Library/.../Code/User/settings.json` | VS Code user settings |
 | `home/private_Library/.../private_Code/User/keybindings.json` | `~/Library/.../Code/User/keybindings.json` | VS Code keybindings |
 | `home/private_Library/.../private_Code/User/snippets/ruby.json` | `~/Library/.../Code/User/snippets/ruby.json` | VS Code Ruby snippets |
+| `home/dot_gitignore` | `~/.gitignore` | Global git ignore patterns |
+| `home/dot_gitconfig.tmpl` | `~/.gitconfig` | Git configuration (user, aliases, signing) |
+| `home/private_dot_ssh/private_config.tmpl` | `~/.ssh/config` | SSH hosts, 1Password agent |
+| `home/dot_config/nvim/` | `~/.config/nvim/` | Neovim (LazyVim) configuration |
+| `home/dot_config/gh/config.yml` | `~/.config/gh/config.yml` | GitHub CLI configuration |
+| `home/dot_docker/daemon.json` | `~/.docker/daemon.json` | Docker daemon settings |
 | `home/run_onchange_after_install-vscode-extensions.sh.tmpl` | _(run script)_ | Install VS Code extensions |
 | `home/run_once_after_cleanup-vscode-profiles.sh.tmpl` | _(run script)_ | One-time profile cleanup |
 
