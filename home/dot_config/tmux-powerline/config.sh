@@ -236,7 +236,7 @@
 
 # mem_used.sh {
 	# Memory icon
-	export TMUX_POWERLINE_SEG_MEM_USED_ICON=" "
+	export TMUX_POWERLINE_SEG_MEM_USED_ICON=""
 	# Measure unit of memory: "GB" or "MB".
 	# In context of this segment "1 GB" equals "2 ^ 30 bytes" and "1 MB" eqauls "2 ^ 20 bytes".
 	export TMUX_POWERLINE_SEG_MEM_USED_UNIT="GB"
@@ -361,7 +361,7 @@
 # tmux_session_info.sh {
 	# Session info format to feed into the command: tmux display-message -p
 	# For example, if FORMAT is '[ #S ]', the command is: tmux display-message -p '[ #S ]'
-	export TMUX_POWERLINE_SEG_TMUX_SESSION_INFO_FORMAT="#S:#I.#P"
+	export TMUX_POWERLINE_SEG_TMUX_SESSION_INFO_FORMAT="#S"
 # }
 
 # utc_time.sh {
