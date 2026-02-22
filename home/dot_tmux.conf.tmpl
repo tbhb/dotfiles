@@ -49,7 +49,7 @@ set -g @plugin 'erikw/tmux-powerline'
 if-shell '[ -f {{ .chezmoi.homeDir }}/.tmux/plugins/tpm/tpm ]' \
   'run "{{ .chezmoi.homeDir }}/.tmux/plugins/tpm/tpm"'
 
-# Add an empty line above the status bar for padding
+# Add empty line above the status bar for padding
 set -g status 2
 set -gF status-format[1] '#{status-format[0]}'
 set -g status-format[0] ''

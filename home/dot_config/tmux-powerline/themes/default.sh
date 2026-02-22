@@ -34,8 +34,11 @@ if [ -z "$TMUX_POWERLINE_WINDOW_STATUS_CURRENT" ]; then
 		"#[fg=#a9dc76,bg=default]"
 		"${TMUX_POWERLINE_SEPARATOR_LEFT_BOLD}"
 		"#[fg=#2d2a2e,bg=#a9dc76,bold]"
-		" #I#F ${TMUX_POWERLINE_SEPARATOR_RIGHT_THIN} #W "
-		"#[fg=#a9dc76,bg=default,nobold]"
+		"#I"
+		"#[fg=#a9dc76,bg=#8ab866,nobold]"
+		"${TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD}"
+		"#[fg=#2d2a2e,bg=#8ab866] #W"
+		"#[fg=#8ab866,bg=default]"
 		"${TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD}"
 	)
 fi
@@ -54,19 +57,22 @@ if [ -z "$TMUX_POWERLINE_WINDOW_STATUS_FORMAT" ]; then
 		"#[fg=#403e41,bg=default]"
 		"${TMUX_POWERLINE_SEPARATOR_LEFT_BOLD}"
 		"#[fg=#959394,bg=#403e41]"
-		" #I#{?window_flags,#F, } ${TMUX_POWERLINE_SEPARATOR_RIGHT_THIN} #W "
-		"#[fg=#403e41,bg=default]"
+		"#I"
+		"#[fg=#403e41,bg=#4a474b]"
+		"${TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD}"
+		"#[fg=#959394,bg=#4a474b] #W"
+		"#[fg=#4a474b,bg=default]"
 		"${TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD}"
 	)
 fi
 
-# Left: session (purple), hostname (cyan)
+# Left: hostname (cyan), session (purple)
 # shellcheck disable=SC1143,SC2128
 if [ -z "$TMUX_POWERLINE_LEFT_STATUS_SEGMENTS" ]; then
 	TMUX_POWERLINE_LEFT_STATUS_SEGMENTS=(
-		"left_cap default #ab9df2 default_separator no_sep_bg_color no_sep_fg_color both_disable separator_disable"
-		"tmux_session_info #ab9df2 #2d2a2e"
+		"left_cap default #78dce8 default_separator no_sep_bg_color no_sep_fg_color both_disable separator_disable"
 		"hostname #78dce8 #2d2a2e"
+		"tmux_session_info #ab9df2 #2d2a2e"
 	)
 fi
 
@@ -74,10 +80,10 @@ fi
 # shellcheck disable=SC1143,SC2128
 if [ -z "$TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS" ]; then
 	TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS=(
-		"load #403e41 #fc9867"
-		"battery #403e41 #ffd866"
-		"date #403e41 #959394 default_separator no_sep_bg_color no_sep_fg_color no_spacing_disable separator_disable"
-		"time #403e41 #959394 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN} no_sep_bg_color no_sep_fg_color no_spacing_disable separator_disable"
+		"cpu_total #403e41 #fc9867 default_separator no_sep_bg_color no_sep_fg_color left_disable no_separator_disable"
+		"mem_percent #403e41 #fc9867 default_separator no_sep_bg_color no_sep_fg_color left_disable separator_disable"
+		"date #403e41 #959394 default_separator no_sep_bg_color no_sep_fg_color left_disable separator_disable"
+		"time #403e41 #959394 default_separator no_sep_bg_color no_sep_fg_color both_disable separator_disable"
 		"right_cap default #403e41 default_separator no_sep_bg_color no_sep_fg_color both_disable separator_disable"
 	)
 fi
