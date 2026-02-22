@@ -36,6 +36,11 @@ The `.chezmoiroot` file sets `home/` as the source root. All managed dotfiles go
 | `home/dot_tmux.conf.tmpl` | `~/.tmux.conf` | tmux: prefix, panes, vi keys, TPM plugins |
 | `home/dot_config/mise/config.toml` | `~/.config/mise/config.toml` | mise tool versions (starship, kubectl, ruby) |
 | `home/dot_config/starship.toml` | `~/.config/starship.toml` | Starship prompt configuration |
+| `home/private_Library/.../private_Code/User/settings.json` | `~/Library/.../Code/User/settings.json` | VS Code user settings |
+| `home/private_Library/.../private_Code/User/keybindings.json` | `~/Library/.../Code/User/keybindings.json` | VS Code keybindings |
+| `home/private_Library/.../private_Code/User/snippets/ruby.json` | `~/Library/.../Code/User/snippets/ruby.json` | VS Code Ruby snippets |
+| `home/run_onchange_after_install-vscode-extensions.sh.tmpl` | _(run script)_ | Install VS Code extensions |
+| `home/run_once_after_cleanup-vscode-profiles.sh.tmpl` | _(run script)_ | One-time profile cleanup |
 
 ### Zsh File Semantics
 
