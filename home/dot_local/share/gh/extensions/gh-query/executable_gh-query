@@ -1,0 +1,46 @@
+#!/bin/bash
+# gh-query: Read-only wrapper for `gh api` — blocks mutating HTTP methods.
+# Usage: gh query [gh api flags] <endpoint>
+set -euo pipefail
+
+i=1
+while [ "$i" -le "$#" ]; do
+    arg="${!i}"
+    case "$arg" in
+        -X|--method)
+            i=$((i + 1))
+            method="${!i:-}"
+            case "$method" in
+                POST|PUT|PATCH|DELETE)
+                    echo "error: 'gh query' is read-only; use 'gh api' for mutating calls" >&2
+                    exit 1
+                    ;;
+            esac
+            ;;
+        -X*)
+            method="${arg:2}"
+            case "$method" in
+                POST|PUT|PATCH|DELETE)
+                    echo "error: 'gh query' is read-only; use 'gh api' for mutating calls" >&2
+                    exit 1
+                    ;;
+            esac
+            ;;
+        --method=*)
+            method="${arg#--method=}"
+            case "$method" in
+                POST|PUT|PATCH|DELETE)
+                    echo "error: 'gh query' is read-only; use 'gh api' for mutating calls" >&2
+                    exit 1
+                    ;;
+            esac
+            ;;
+        --input)
+            echo "error: 'gh query' is read-only; --input sends a request body. Use 'gh api' for mutating calls" >&2
+            exit 1
+            ;;
+    esac
+    i=$((i + 1))
+done
+
+exec gh api "$@"
