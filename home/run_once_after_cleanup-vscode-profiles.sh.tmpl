@@ -1,0 +1,46 @@
+{{- $isDevcontainer := or (env "REMOTE_CONTAINERS") (env "CODESPACES") -}}
+{{- if not $isDevcontainer -}}
+#!/bin/bash
+# One-time cleanup: remove VS Code profiles after promoting Python profile to Default
+
+STORAGE="{{ .chezmoi.homeDir }}/Library/Application Support/Code/User/globalStorage/storage.json"
+PROFILES_DIR="{{ .chezmoi.homeDir }}/Library/Application Support/Code/User/profiles"
+
+if [ ! -f "$STORAGE" ]; then
+  exit 0
+fi
+
+# Check VS Code is not running
+if pgrep -x "Electron" >/dev/null 2>&1 || pgrep -f "Visual Studio Code" >/dev/null 2>&1; then
+  echo "WARNING: VS Code appears to be running. Close it first, then run 'chezmoi apply' again."
+  exit 1
+fi
+
+# Clear profile list and reset all workspace associations to default
+python3 -c "
+import json, sys
+
+storage_path = sys.argv[1]
+with open(storage_path) as f:
+    data = json.load(f)
+
+data['userDataProfiles'] = []
+
+if 'profileAssociations' in data:
+    if 'workspaces' in data['profileAssociations']:
+        data['profileAssociations']['workspaces'] = {
+            k: '__default__profile__'
+            for k in data['profileAssociations']['workspaces']
+        }
+
+with open(storage_path, 'w') as f:
+    json.dump(data, f, indent='\t')
+" "$STORAGE"
+
+# Remove profile directories
+if [ -d "$PROFILES_DIR" ]; then
+  rm -rf "$PROFILES_DIR"
+fi
+
+echo "VS Code profiles cleaned up. All workspaces now use the Default profile."
+{{- end }}
