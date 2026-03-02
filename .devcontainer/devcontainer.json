@@ -1,0 +1,11 @@
+{
+  "name": "dotfiles",
+  "image": "ghcr.io/tbhb/devcontainer-base-debian:trixie",
+  "containerEnv": {
+    "REMOTE_CONTAINERS": "true"
+  },
+  "features": {
+    "ghcr.io/tbhb/devcontainer-features/chezmoi:1": {}
+  },
+  "postCreateCommand": "ln -sfn \"${containerWorkspaceFolder}\" ~/dotfiles && ~/dotfiles/install.sh"
+}
