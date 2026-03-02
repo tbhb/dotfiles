@@ -1,0 +1,284 @@
+#!/usr/bin/env zsh
+# ============================================================================
+# Devcontainer dotfiles test suite
+#
+# Meant to be sourced inside a zsh login+interactive session so that aliases,
+# env vars, and PATH entries from .zshenv / .zprofile / .zshrc are all visible:
+#
+#   zsh -lic 'source ~/dotfiles/script/test-dotfiles'
+# ============================================================================
+
+# --------------------------------------------------------------------------
+# Minimal assertion harness
+# --------------------------------------------------------------------------
+typeset -gi _pass=0 _fail=0 _skip=0
+typeset -g  _section=""
+
+_green=$'\e[32m' _red=$'\e[31m' _yellow=$'\e[33m' _bold=$'\e[1m' _reset=$'\e[0m'
+
+section() { _section="$1"; print "\n${_bold}── $1 ──${_reset}" }
+
+pass() { (( _pass++ )); print "  ${_green}PASS${_reset}  $1" }
+fail() { (( _fail++ )); print "  ${_red}FAIL${_reset}  $1${2:+  (${2})}" }
+skip() { (( _skip++ )); print "  ${_yellow}SKIP${_reset}  $1${2:+  (${2})}" }
+
+assert_file_exists() {
+  local f="$1" label="${2:-$1}"
+  [[ -e "$f" ]] && pass "$label exists" || fail "$label exists" "not found: $f"
+}
+
+assert_file_not_exists() {
+  local f="$1" label="${2:-$1}"
+  [[ ! -e "$f" ]] && pass "$label does not exist" || fail "$label does not exist" "found: $f"
+}
+
+assert_symlink() {
+  local f="$1" label="${2:-$1}"
+  [[ -L "$f" ]] && pass "$label is a symlink" || fail "$label is a symlink" "not a symlink: $f"
+}
+
+assert_file_mode() {
+  local f="$1" expected="$2" label="${3:-$1}"
+  local actual
+  actual=$(stat -c '%a' "$f" 2>/dev/null) || { fail "$label has mode $expected" "stat failed"; return }
+  [[ "$actual" == "$expected" ]] && pass "$label has mode $expected" || fail "$label has mode $expected" "got $actual"
+}
+
+assert_env_set() {
+  local var="$1"
+  [[ -n "${(P)var}" ]] && pass "\$$var is set" || fail "\$$var is set"
+}
+
+assert_env_equals() {
+  local var="$1" expected="$2"
+  local actual="${(P)var}"
+  [[ "$actual" == "$expected" ]] && pass "\$$var == $expected" || fail "\$$var == $expected" "got '${actual}'"
+}
+
+assert_env_not_set() {
+  local var="$1"
+  [[ -z "${(P)var}" ]] && pass "\$$var is not set" || fail "\$$var is not set" "got '${(P)var}'"
+}
+
+assert_path_contains() {
+  local entry="$1"
+  [[ ":$PATH:" == *":${entry}:"* ]] && pass "PATH contains $entry" || fail "PATH contains $entry"
+}
+
+assert_path_not_contains() {
+  local pattern="$1"
+  [[ ":$PATH:" != *"$pattern"* ]] && pass "PATH excludes $pattern" || fail "PATH excludes $pattern"
+}
+
+assert_alias_defined() {
+  local name="$1"
+  alias "$name" &>/dev/null && pass "alias '$name' defined" || fail "alias '$name' defined"
+}
+
+assert_alias_not_defined() {
+  local name="$1"
+  alias "$name" &>/dev/null && fail "alias '$name' not defined" "but it is" || pass "alias '$name' not defined"
+}
+
+assert_file_contains() {
+  local f="$1" pattern="$2" label="${3:-$1 contains '$2'}"
+  grep -q "$pattern" "$f" 2>/dev/null && pass "$label" || fail "$label"
+}
+
+assert_file_not_contains() {
+  local f="$1" pattern="$2" label="${3:-$1 excludes '$2'}"
+  ! grep -q "$pattern" "$f" 2>/dev/null && pass "$label" || fail "$label"
+}
+
+assert_git_config() {
+  local key="$1" expected="$2"
+  local actual
+  actual=$(git config --global "$key" 2>/dev/null) || { fail "git config $key == $expected" "not set"; return }
+  [[ "$actual" == "$expected" ]] && pass "git config $key == $expected" || fail "git config $key == $expected" "got '$actual'"
+}
+
+assert_git_config_not_set() {
+  local key="$1"
+  local actual
+  actual=$(git config --global "$key" 2>/dev/null)
+  [[ -z "$actual" ]] && pass "git config $key is not set" || fail "git config $key is not set" "got '$actual'"
+}
+
+assert_command_exists() {
+  local cmd="$1"
+  command -v "$cmd" &>/dev/null && pass "$cmd available" || fail "$cmd available"
+}
+
+assert_command_exists_or_skip() {
+  local cmd="$1" reason="${2:-not installed}"
+  command -v "$cmd" &>/dev/null && pass "$cmd available" || skip "$cmd available" "$reason"
+}
+
+# ==========================================================================
+# Tests
+# ==========================================================================
+
+# --------------------------------------------------------------------------
+section "File Existence"
+# --------------------------------------------------------------------------
+assert_file_exists ~/.zshenv
+assert_file_exists ~/.zprofile
+assert_file_exists ~/.zshrc
+assert_file_exists ~/.tmux.conf
+assert_file_exists ~/.gitconfig
+assert_file_exists ~/.gitignore
+assert_file_exists ~/.config/starship.toml
+assert_file_exists ~/.config/mise/config.toml
+assert_file_exists ~/.config/gh/config.yml
+assert_file_exists ~/.docker/daemon.json
+assert_file_exists ~/.ssh/config
+assert_file_exists ~/.config/nvim/init.lua
+assert_file_exists ~/.config/nvim/lazyvim.json
+assert_file_exists ~/.config/nvim/lua/config/lazy.lua
+assert_file_exists ~/.config/nvim/lua/plugins/colorscheme.lua
+
+# --------------------------------------------------------------------------
+section "File Permissions"
+# --------------------------------------------------------------------------
+assert_file_mode ~/.ssh/config 600 "~/.ssh/config"
+
+# --------------------------------------------------------------------------
+section "Symlink"
+# --------------------------------------------------------------------------
+assert_symlink ~/dotfiles
+
+# --------------------------------------------------------------------------
+section "Environment Variables"
+# --------------------------------------------------------------------------
+assert_env_equals EDITOR nvim
+assert_env_equals AWS_REGION us-east-1
+assert_env_equals RUBY_YJIT_ENABLE 1
+assert_env_equals PNPM_HOME "$HOME/.local/share/pnpm"
+assert_env_set LESS_TERMCAP_md
+
+# --------------------------------------------------------------------------
+section "Devcontainer Exclusions — Env"
+# --------------------------------------------------------------------------
+# SSH_AUTH_SOCK may be set by devcontainer infra, so check the rendered file
+assert_file_not_contains ~/.zprofile SSH_AUTH_SOCK \
+  ".zprofile does not set SSH_AUTH_SOCK"
+assert_file_not_contains ~/.zprofile OP_ACCOUNT \
+  ".zprofile does not contain OP_ACCOUNT"
+
+# --------------------------------------------------------------------------
+section "PATH Entries"
+# --------------------------------------------------------------------------
+assert_path_contains "$HOME/.docker/bin"
+assert_path_contains "$HOME/.dotnet/tools"
+assert_path_contains "$HOME/.local/bin"
+assert_path_contains "$HOME/go/bin"
+assert_path_contains "$PNPM_HOME"
+
+# --------------------------------------------------------------------------
+section "Devcontainer Exclusions — PATH"
+# --------------------------------------------------------------------------
+assert_path_not_contains "/opt/homebrew/opt/coreutils"
+assert_path_not_contains "/opt/homebrew/opt/gnu-sed"
+
+# --------------------------------------------------------------------------
+section "Aliases"
+# --------------------------------------------------------------------------
+assert_alias_defined bx
+assert_alias_defined g
+assert_alias_defined ga
+assert_alias_defined gc
+assert_alias_defined gco
+assert_alias_defined gp
+assert_alias_defined gs
+assert_alias_defined nv
+assert_alias_defined reload
+assert_alias_defined mkpasswd
+
+# --------------------------------------------------------------------------
+section "Devcontainer Exclusions — Aliases"
+# --------------------------------------------------------------------------
+assert_alias_not_defined tailscale
+
+# --------------------------------------------------------------------------
+section "Git Configuration"
+# --------------------------------------------------------------------------
+assert_git_config user.name "Tony Burns"
+assert_git_config user.email "tony@tonyburns.net"
+assert_git_config commit.signoff "true"
+assert_git_config init.defaultBranch "main"
+assert_git_config merge.conflictstyle "diff3"
+assert_git_config pull.rebase "true"
+assert_git_config rerere.enabled "true"
+
+# credential helper — check that it contains the expected fragment
+_cred_helper=$(git config --global "credential.https://github.com.helper" 2>/dev/null || true)
+if [[ "$_cred_helper" == *"gh auth git-credential"* ]]; then
+  pass "credential helper contains 'gh auth git-credential'"
+else
+  fail "credential helper contains 'gh auth git-credential'" "got '$_cred_helper'"
+fi
+# …and does NOT use a brew-prefixed path
+if [[ "$_cred_helper" != */homebrew/* ]]; then
+  pass "credential helper is not brew-prefixed"
+else
+  fail "credential helper is not brew-prefixed" "got '$_cred_helper'"
+fi
+
+# --------------------------------------------------------------------------
+section "Devcontainer Exclusions — Git"
+# --------------------------------------------------------------------------
+assert_git_config_not_set commit.gpgsign
+assert_git_config_not_set tag.gpgsign
+assert_git_config_not_set user.signingkey
+
+# --------------------------------------------------------------------------
+section "SSH Config"
+# --------------------------------------------------------------------------
+assert_file_not_contains ~/.ssh/config IdentityAgent \
+  "~/.ssh/config excludes IdentityAgent"
+assert_file_contains ~/.ssh/config evedata-hzl \
+  "~/.ssh/config contains evedata-hzl host"
+
+# --------------------------------------------------------------------------
+section "Tool Availability"
+# --------------------------------------------------------------------------
+assert_command_exists chezmoi
+assert_command_exists zsh
+assert_command_exists git
+assert_command_exists_or_skip mise "not installed"
+assert_command_exists_or_skip nvim "not installed"
+assert_command_exists_or_skip tmux "not installed"
+assert_command_exists_or_skip gh "not installed"
+
+# starship is installed lazily via mise — try installing before checking
+if command -v mise &>/dev/null; then
+  mise install --yes 2>/dev/null
+fi
+assert_command_exists_or_skip starship "mise install may not have run"
+
+# --------------------------------------------------------------------------
+section "Chezmoi State"
+# --------------------------------------------------------------------------
+_chezmoi_diff=$(chezmoi diff 2>/dev/null || true)
+if [[ -z "$_chezmoi_diff" ]]; then
+  pass "chezmoi diff is clean (no drift)"
+else
+  fail "chezmoi diff is clean (no drift)" "diff output present"
+fi
+
+# --------------------------------------------------------------------------
+section "File Content Spot Checks"
+# --------------------------------------------------------------------------
+assert_file_contains ~/.tmux.conf "prefix C-q" \
+  ".tmux.conf sets prefix to C-q"
+assert_file_contains ~/.zshrc "mise activate zsh" \
+  ".zshrc activates mise"
+
+# ==========================================================================
+# Summary
+# ==========================================================================
+print "\n${_bold}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${_reset}"
+print "  ${_green}PASS${_reset} $_pass  ${_red}FAIL${_reset} $_fail  ${_yellow}SKIP${_reset} $_skip  Total $(( _pass + _fail + _skip ))"
+print "${_bold}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${_reset}"
+
+(( _fail == 0 ))
