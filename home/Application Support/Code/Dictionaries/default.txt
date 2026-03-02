@@ -18,8 +18,12 @@ annotoly
 anyio
 Appendable
 appname
+aquasecurity
+arci
 aread
 arithmatex
+asasalint
+asciicheck
 asyncio
 asyncmy
 asyncpg
@@ -38,6 +42,7 @@ beautifulsoup
 betterem
 bikeshed
 bindkey
+biomejs
 Blocklist
 blocklists
 Blockquotes
@@ -79,6 +84,7 @@ customise
 cyberdeck
 cyclonedx
 cyclopts
+daixiang
 dataclass
 dataclasses
 datetimes
@@ -104,6 +110,7 @@ dulwich
 dupl
 durationcheck
 Dynaconf
+EDITMSG
 elif
 errcheck
 errmsg
@@ -148,6 +155,7 @@ gdshader
 genson
 getattr
 ghostty
+ghrel
 glightbox
 globalns
 gnubin
@@ -160,8 +168,10 @@ gocyclo
 godottest
 godox
 gofmt
+gofumpt
 goimports
 golangci
+golines
 golint
 gomnd
 gosec
@@ -200,6 +210,7 @@ Justfiles
 keepalive
 Killboard
 Killmails
+Krav
 kubeswitch
 kwds
 lastrowid
@@ -210,6 +221,7 @@ linkchecker
 linuxbrew
 livereload
 llms
+localmodule
 localns
 logfmt
 magiclink
@@ -234,12 +246,14 @@ modifyitems
 msgpack
 multirun
 mutmut
+mvdan
 MYAPP
 mymodule
 mypy
 myrepo
 mytool
 nakedret
+nanolayer
 neovim
 nestif
 netcommon
@@ -263,6 +277,7 @@ oaps
 omegaconf
 orcid
 orjson
+OSLC
 Overengineered
 pagefind
 paralleltest
@@ -273,6 +288,7 @@ Perflint
 perfsprint
 picosvg
 pipefail
+pkgsite
 platformdirs
 playbrood
 playthrough
@@ -344,6 +360,7 @@ smartsymbols
 sniffio
 solarsystem
 solarsystems
+Sourcegraph
 sprintf
 sqlclosecheck
 sqlx
@@ -368,6 +385,7 @@ tcpdump
 technitium
 Temurin
 tenv
+tera
 TERMCAP
 testableexamples
 testifylint

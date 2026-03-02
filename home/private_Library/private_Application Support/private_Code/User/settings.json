@@ -99,7 +99,6 @@
 	},
 	"editor.unicodeHighlight.includeStrings": false,
 	"window.density.editorTabHeight": "compact",
-	"workbench.editor.enablePreview": false,
 	"workbench.editor.showTabs": "single",
 	"workbench.editor.showIcons": false,
 
@@ -265,6 +264,7 @@
 		"editor.rulers": [100]
 	},
 	"markdown-preview-enhanced.codeBlockTheme": "github.css",
+	"markdown-preview-enhanced.plantumlJarPath": "/opt/homebrew/opt/plantuml/libexec/plantuml.jar",
 	"markdown-preview-enhanced.previewTheme": "github-light.css",
 
 	"[powershell]": {
@@ -616,7 +616,5 @@
 	"nxConsole.showNodeVersionOnStartup": false,
 	"redhat.telemetry.enabled": false,
 	"snyk.advanced.cliPath": "/Users/tony/Library/Application Support/snyk/vscode-cli/snyk-macos-arm64",
-	"snyk.securityAtInception.autoConfigureSnykMcpServer": true,
-	"snyk.securityAtInception.executionFrequency": "On Code Generation",
-	"snyk.trustedFolders": ["/Users/tony/Code/github.com/tbhb/LittleMatches"]
+	"chat.mcp.gallery.enabled": true
 }
