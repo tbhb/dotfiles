@@ -6,7 +6,6 @@
 	"update.mode": "start",
 	"window.autoDetectColorScheme": false,
 	"window.autoDetectHighContrast": false,
-	"window.commandCenter": false,
 	"window.confirmSaveUntitledWorkspace": false,
 	"window.newWindowDimensions": "maximized",
 	"window.restoreWindows": "all",
@@ -75,28 +74,28 @@
 	"editor.suggestSelection": "first",
 	"editor.tabSize": 2,
 	"editor.tokenColorCustomizations": {
-		"[*Light*]": {
-			"textMateRules": [
-				{
-					"scope": "ref.matchtext",
-					"settings": {
-						"foreground": "#000"
-					}
-				}
-			]
-		},
-		"[*Dark*]": {
-			"textMateRules": [
-				{
-					"scope": "ref.matchtext",
-					"settings": {
-						"foreground": "#fff"
-					}
-				}
-			]
-		},
-		"textMateRules": []
-	},
+    "[*Light*]": {
+      "textMateRules": [
+        {
+          "scope": "ref.matchtext",
+          "settings": {
+            "foreground": "#000"
+          }
+        }
+      ]
+    },
+    "[*Dark*]": {
+      "textMateRules": [
+        {
+          "scope": "ref.matchtext",
+          "settings": {
+            "foreground": "#fff"
+          }
+        }
+      ]
+    },
+    "textMateRules": []
+  },
 	"editor.unicodeHighlight.includeStrings": false,
 	"window.density.editorTabHeight": "compact",
 	"workbench.editor.showTabs": "single",
@@ -509,28 +508,30 @@
 	"explorer.fileNesting.enabled": true,
 	"explorer.fileNesting.expand": false,
 	"files.associations": {
-		"*.rb.tt": "erb",
-		"*.erb.tt": "erb",
-		"*.gemfile": "ruby",
-		".env*": "dotenv",
-		"wrangler.json": "jsonc",
-		"llms.txt": "markdown",
-		"LICENSE": "plaintext",
-		"LICENSE-DOCS": "plaintext",
-		"llms-full.txt": "markdown",
-		"**/overrides/**/*.html": "jinja-html",
-		"dbt/**/*.sql": "",
-		"models_dbt/**/*.sql": "jinja-sql",
-		"models/**/*.sql": "jinja-sql",
-		"**/*.sql": "jinja-sql",
-		"*.css": "tailwindcss",
-		"*.hujson": "jsonc",
-		"*.pkr.hcl": "hcl",
-		"folio/theme/**/*.html": "jinja-html",
-		"*.include": "bikeshed",
-		"*.jsonlt": "jsonl",
-		"*.tmpl": "go-template"
-	},
+    "*.rb.tt": "erb",
+    "*.erb.tt": "erb",
+    "*.gemfile": "ruby",
+    ".env*": "dotenv",
+    "wrangler.json": "jsonc",
+    "llms.txt": "markdown",
+    "LICENSE": "plaintext",
+    "LICENSE-DOCS": "plaintext",
+    "llms-full.txt": "markdown",
+    "**/overrides/**/*.html": "jinja-html",
+    "dbt/**/*.sql": "",
+    "models_dbt/**/*.sql": "jinja-sql",
+    "models/**/*.sql": "jinja-sql",
+    "**/*.sql": "jinja-sql",
+    "*.css": "tailwindcss",
+    "*.hujson": "jsonc",
+    "*.pkr.hcl": "hcl",
+    "folio/theme/**/*.html": "jinja-html",
+    "*.include": "bikeshed",
+    "*.jsonlt": "jsonl",
+    "*.tmpl": "go-template",
+    "__redirects": "plaintext",
+    "_headers": "plaintext"
+  },
 	"files.exclude": {
 		"**/.git": true,
 		"**/.svn": true,
@@ -616,5 +617,7 @@
 	"nxConsole.showNodeVersionOnStartup": false,
 	"redhat.telemetry.enabled": false,
 	"snyk.advanced.cliPath": "/Users/tony/Library/Application Support/snyk/vscode-cli/snyk-macos-arm64",
-	"chat.mcp.gallery.enabled": true
+	"chat.mcp.gallery.enabled": true,
+	"chat.agentsControl.enabled": false,
+	"workbench.secondarySideBar.defaultVisibility": "hidden"
 }

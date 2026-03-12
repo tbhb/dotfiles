@@ -2,7 +2,7 @@
 {{- $isLinux := eq .chezmoi.os "linux" -}}
 {{- $isDevcontainer := or (env "REMOTE_CONTAINERS") (env "CODESPACES") -}}
 set -g default-terminal "tmux-256color"
-set -ag terminal-overrides ",$TERM:RGB"
+set -ag terminal-overrides ",*:RGB"
 
 set-option -g prefix C-q
 bind-key C-q last-window
