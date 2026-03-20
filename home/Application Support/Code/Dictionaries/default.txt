@@ -3,6 +3,9 @@ accessibilities
 accountingentrytypes
 addopts
 adrs
+agentbin
+agentbinctl
+agentbinhq
 agentic
 agenttypes
 aiocache
@@ -155,6 +158,7 @@ Fediverse
 fergusstrange
 filterwarnings
 fontawesome
+fontsource
 fonttools
 forbidigo
 fpath
@@ -173,6 +177,7 @@ ghrel
 glightbox
 globalns
 gnubin
+GOARCH
 gochecknoglobals
 gochecknoinits
 gocognit
@@ -191,6 +196,7 @@ gomnd
 GOPATH
 gosec
 gosmopolitan
+govulncheck
 hasattr
 healthcheck
 hiredis
@@ -255,6 +261,7 @@ llms
 localmodule
 localns
 logfmt
+logomark
 magiclink
 makezero
 malloc
@@ -438,6 +445,8 @@ tasklist
 tbhb
 tcpdump
 technitium
+templ
+templruntime
 Temurin
 tenv
 tera

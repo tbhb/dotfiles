@@ -266,6 +266,12 @@
 	"markdown-preview-enhanced.plantumlJarPath": "/opt/homebrew/opt/plantuml/libexec/plantuml.jar",
 	"markdown-preview-enhanced.previewTheme": "github-light.css",
 
+	"[mdx]": {
+		"editor.wordWrap": "wordWrapColumn",
+		"editor.wordWrapColumn": 100,
+		"editor.rulers": [100]
+	},
+
 	"[powershell]": {
 		"editor.defaultFormatter": "ms-vscode.powershell"
 	},
@@ -339,13 +345,19 @@
 		"editor.formatOnSave": true
 	},
 
+	"[templ]": {
+		"editor.defaultFormatter": "a-h.templ",
+		"editor.formatOnSave": true
+	},
+
 	"[toml]": {
 		"editor.defaultFormatter": "tamasfe.even-better-toml",
 		"editor.formatOnSave": true
 	},
 
 	"tailwindCSS.includeLanguages": {
-		"astro": "html"
+		"astro": "html",
+		"templ": "html"
 	},
 
 	"[typescript]": {
@@ -619,5 +631,6 @@
 	"snyk.advanced.cliPath": "/Users/tony/Library/Application Support/snyk/vscode-cli/snyk-macos-arm64",
 	"chat.mcp.gallery.enabled": true,
 	"chat.agentsControl.enabled": false,
-	"workbench.secondarySideBar.defaultVisibility": "hidden"
+  "workbench.secondarySideBar.defaultVisibility": "hidden",
+  "claudeCode.preferredLocation": "panel"
 }
