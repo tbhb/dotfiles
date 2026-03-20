@@ -3,6 +3,7 @@ idiomatic_version_file_enable_tools = ["python"]
 experimental = true
 
 [tools]
+go = "latest"
 kubectl = "1.32"
 ruby = "3.4"
 starship = "latest"
