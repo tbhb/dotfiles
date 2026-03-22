@@ -74,6 +74,12 @@ alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 eval "$(mise activate zsh)"
 eval "$(starship init zsh)"
 
+# agent-safehouse
+SAFEHOUSE_APPEND_PROFILE="$HOME/.config/agent-safehouse/local-overrides.sb"
+
+safe() { safehouse --add-dirs-ro=~/Code --append-profile="$SAFEHOUSE_APPEND_PROFILE" "$@"; }
+safe-claude() { safe claude --dangerously-skip-permissions "$@"; }
+
 # Google Cloud SDK
 if [ -f '{{ .chezmoi.homeDir }}/google-cloud-sdk/completion.zsh.inc' ]; then . '{{ .chezmoi.homeDir }}/google-cloud-sdk/completion.zsh.inc'; fi
 
