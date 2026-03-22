@@ -5,5 +5,6 @@ experimental = true
 [tools]
 go = "latest"
 kubectl = "1.32"
-ruby = "3.4"
+node = "lts"
+ruby = "latest"
 starship = "latest"
