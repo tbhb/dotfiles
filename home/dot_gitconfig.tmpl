@@ -11,7 +11,7 @@
 	email = tony@tonyburns.net
 	name = Tony Burns
 {{- if not $isDevcontainer }}
-	signingkey = 94F36EBB85C0D03B20378471F4D7520321CEBABB
+	signingkey = ~/.ssh/id_ed25519
 {{- end }}
 [credential "https://github.com"]
 	helper =
@@ -26,6 +26,8 @@
 {{- end }}
 	signoff = true
 {{- if not $isDevcontainer }}
+[gpg]
+  format = ssh
 [tag]
 	gpgsign = true
 {{- end }}
