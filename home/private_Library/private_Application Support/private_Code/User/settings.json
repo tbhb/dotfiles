@@ -631,6 +631,7 @@
 	"snyk.advanced.cliPath": "/Users/tony/Library/Application Support/snyk/vscode-cli/snyk-macos-arm64",
 	"chat.mcp.gallery.enabled": true,
 	"chat.agentsControl.enabled": false,
-  "workbench.secondarySideBar.defaultVisibility": "hidden",
-  "claudeCode.preferredLocation": "panel"
+	"workbench.secondarySideBar.defaultVisibility": "hidden",
+	"claudeCode.preferredLocation": "panel",
+	"rumdl.server.path": "/opt/homebrew/bin/rumdl"
 }
