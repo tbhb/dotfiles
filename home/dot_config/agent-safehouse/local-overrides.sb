@@ -991,6 +991,12 @@
     (literal "/Library/Application Support/ClaudeCode/CLAUDE.md")
 )
 
+;; ccstatusline (Claude Code status line) reads/writes its settings.json here.
+;; Without write access it errors on EPERM and pollutes stdout, breaking the status line.
+(allow file-read* file-write*
+    (home-subpath "/.config/ccstatusline")
+)
+
 ;; ---------------------------------------------------------------------------
 ;; Agent: Codex
 ;; Codex CLI binary, state, and config paths.
