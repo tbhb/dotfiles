@@ -107,6 +107,11 @@
 		"editor.formatOnSave": true
 	},
 
+	"[c4]": {
+		"editor.defaultFormatter": "systemticks.c4-dsl-extension",
+		"editor.formatOnSave": true
+	},
+
 	"[caddyfile]": {
 		"editor.defaultFormatter": "matthewpi.caddyfile-support",
 		"editor.formatOnSave": true
@@ -563,7 +568,8 @@
 		"**/.hypothesis": true,
 		"**/.import_linter_cache": true,
 		"**/.worktrees": true,
-		"**/.claude/worktrees": true
+		"**/.claude/worktrees": true,
+		"**/.rumdl_cache": true
 	},
 	"files.hotExit": "onExitAndWindowClose",
 	"search.exclude": {
