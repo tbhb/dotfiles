@@ -159,7 +159,7 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "COLUMNS=${COLUMNS:-$(tmux display-message -p '#{pane_width}' 2>/dev/null || echo 80)} bunx -y ccstatusline@latest",
+    "command": "PATH=/opt/homebrew/bin:$PATH COLUMNS=${COLUMNS:-$(tmux display-message -p '#{pane_width}' 2>/dev/null || echo 80)} bunx -y ccstatusline@latest",
     "padding": 0
   },
   "enabledPlugins": {
