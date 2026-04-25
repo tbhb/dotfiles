@@ -3,13 +3,8 @@
   "cleanupPeriodDays": 7,
   "env": {
     "CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR": "1",
-    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
-  },
-  "spinnerVerbs": {
-    "mode": "replace",
-    "verbs": [
-      " "
-    ]
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
+    "CLAUDE_CODE_NO_FLICKER": "1"
   },
   "includeCoAuthoredBy": false,
   "permissions": {
@@ -101,13 +96,8 @@
       "WebFetch(domain:raw.githubusercontent.com)"
     ],
     "deny": [
-      "Read(//**/.claude/settings.json)",
-      "Read(//**/.claude/settings.local.json)",
-      "Edit(//**/.claude/settings.json)",
-      "Edit(//**/.claude/settings.local.json)",
-      "Bash(rm -rf:*)",
-      "Bash(rm -fr:*)",
       "Bash(rm -rf /:*)",
+      "Bash(rm -rf ~:*)",
       "Bash(sudo rm:*)",
       "Bash(sudo -rf:*)",
       "Bash(chmod -R 777:*)",
@@ -165,12 +155,12 @@
       "Read(~/.ssh/*)",
       "Read(~/.terraform.d/*)",
       "Read(~/.zsh_history)"
-    ],
-    "ask": [
-      "Bash(git add:*)",
-      "Bash(git commit:*)",
-      "Bash(gh api:*)"
     ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "COLUMNS=${COLUMNS:-$(tmux display-message -p '#{pane_width}' 2>/dev/null || echo 80)} bunx -y ccstatusline@latest",
+    "padding": 0
   },
   "enabledPlugins": {
     "claude-md-management@claude-plugins-official": true,
@@ -180,15 +170,17 @@
     "skill-creator@claude-plugins-official": true,
     "feature-dev@claude-plugins-official": true
   },
+  "spinnerVerbs": {
+    "mode": "replace",
+    "verbs": [
+      " "
+    ]
+  },
+  "effortLevel": "high",
   "promptSuggestionEnabled": false,
+  "skipDangerousModePermissionPrompt": true,
   "feedbackSurveyState": {
     "lastShownTime": 1754108041250
   },
-  "effortLevel": "high",
-  "skipDangerousModePermissionPrompt": true,
-  "statusLine": {
-    "type": "command",
-    "command": "bunx -y ccstatusline@latest",
-    "padding": 0
-  }
+  "model": "opus[1m]"
 }

@@ -562,7 +562,8 @@
 		"**/.complexipy_cache": true,
 		"**/.hypothesis": true,
 		"**/.import_linter_cache": true,
-		"**/.worktrees": true
+		"**/.worktrees": true,
+		"**/.claude/worktrees": true
 	},
 	"files.hotExit": "onExitAndWindowClose",
 	"search.exclude": {
