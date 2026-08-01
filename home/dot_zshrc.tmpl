@@ -77,9 +77,23 @@ eval "$(starship init zsh)"
 # agent-safehouse
 SAFEHOUSE_APPEND_PROFILE="$HOME/.config/agent-safehouse/local-overrides.sb"
 
-safe() { safehouse --add-dirs-ro=~/Code --append-profile="$SAFEHOUSE_APPEND_PROFILE" "$@"; }
+safe() { safehouse --add-dirs-ro=~/Code --enable=browser-native-messaging --append-profile="$SAFEHOUSE_APPEND_PROFILE" "$@"; }
 safe-claude() { safe claude --dangerously-skip-permissions "$@"; }
 safe-claude-workspace() { safe --add-dirs=$PWD/.. -- claude --dangerously-skip-permissions "$@"; }
+
+# Clone a GitHub repo into ~/Code/github.com/<org>/<repo>, or update it if already cloned
+ghrc() {
+  if [ -z "$1" ]; then
+    echo "usage: ghrc <org>/<repo>" >&2
+    return 1
+  fi
+  local dir="{{ .chezmoi.homeDir }}/Code/github.com/$1"
+  if [ -d "$dir/.git" ]; then
+    git -C "$dir" up
+  else
+    gh repo clone "$1" "$dir"
+  fi
+}
 
 # Google Cloud SDK
 if [ -f '{{ .chezmoi.homeDir }}/google-cloud-sdk/completion.zsh.inc' ]; then . '{{ .chezmoi.homeDir }}/google-cloud-sdk/completion.zsh.inc'; fi
@@ -90,3 +104,7 @@ if command -v switcher &>/dev/null; then
   alias ks=switch
   source <(switch completion zsh)
 fi
+
+
+# Added by Antigravity CLI installer
+export PATH="{{ .chezmoi.homeDir }}/.local/bin:$PATH"
